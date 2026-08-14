@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#741D22"/>
+    <text x="50" y="60" font-family="Archivo,sans-serif" font-size="34" font-weight="900" fill="#F5F3EF" text-anchor="middle">CPCU</text>
+  </svg>
+</template>
+<helmet>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#F5F3EF;color:#1c1a19;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:#741D22;text-decoration:none;transition:color .2s}
+  a:hover{color:#8A2428}
+  ::selection{background:#741D22;color:#F5F3EF}
+  input,textarea,select,button{font-family:inherit}
+  @keyframes cpcuMarquee{to{transform:translateX(-50%)}}
+  /* ---- responsive ---- */
+  [data-hd-burger]{display:none}
+  @media (max-width:1080px){
+    [data-g="cards4"]{grid-template-columns:repeat(2,1fr)!important}
+  }
+  @media (max-width:860px){
+    [data-hd-burger]{display:flex!important}
+    [data-hd-nav]{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch!important;gap:0!important;background:#1c130d;padding:6px clamp(20px,5vw,64px) 18px;border-top:1px solid rgba(245,243,239,.12);transform:translateY(-10px);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+    [data-hd][data-open="true"] [data-hd-nav]{opacity:1;transform:none;pointer-events:auto}
+    [data-hd-nav] [data-hd-link]{padding:15px 0!important;border-bottom:1px solid rgba(245,243,239,.1);color:#F5F3EF!important}
+    [data-hd-nav] > a:last-child{margin-top:14px;justify-content:flex-start}
+    [data-hd][data-open="true"] [data-burger-line]:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    [data-hd][data-open="true"] [data-burger-line]:nth-child(2){opacity:0}
+    [data-hd][data-open="true"] [data-burger-line]:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    [data-hd-logo]{height:52px!important}
+    [data-g="hero"]{grid-template-columns:1fr!important}
+    [data-g="two"]{grid-template-columns:1fr!important}
+    [data-g="three"]{grid-template-columns:repeat(2,1fr)!important}
+    [data-g="stats4"]{grid-template-columns:repeat(2,1fr)!important}
+    [data-g="dir4"]{grid-template-columns:repeat(2,1fr)!important}
+  }
+  @media (max-width:620px){
+    [data-g="cards4"]{grid-template-columns:1fr!important}
+    [data-g="three"]{grid-template-columns:1fr!important}
+    [data-g="dir4"]{grid-template-columns:1fr!important}
+    [data-g="dir4"]>div{padding:24px 0!important;border-right:none!important;border-bottom:1px solid rgba(24,24,24,.12)!important}
+    [data-g="form2"]{grid-template-columns:1fr!important}
+    [data-g="gallery"]{grid-template-columns:1fr 1fr!important}
+    [data-g="gallery"]>*{grid-row:auto!important;grid-column:auto!important}
+  }
+</style>
+</helmet>
+
+<div style="overflow-x:hidden">
+
+<!-- HEADER -->
+<header data-hd style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(20px,5vw,64px);transition:background .35s,padding .35s,box-shadow .35s,border-color .35s;border-bottom:1px solid transparent">
+  <a href="#top" style="display:flex;align-items:center;color:inherit">
+    <img data-hd-logo src="assets/cpcu-cuadrado.png" alt="CPCU — Centro Profesional Cárnico del Uruguay" style="height:72px;width:auto;display:block;filter:none;transition:filter .35s">
+  </a>
+  <nav data-hd-nav style="display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)">
+    <a data-hd-link href="#top" style="font-size:13px;font-weight:500;letter-spacing:.3px;color:#1c1a19;transition:color .35s">Inicio</a>
+    <a data-hd-link href="#cpcu" style="font-size:13px;font-weight:500;letter-spacing:.3px;color:#1c1a19;transition:color .35s">CPCU</a>
+    <a data-hd-link href="#capacitaciones" style="font-size:13px;font-weight:500;letter-spacing:.3px;color:#1c1a19;transition:color .35s">Capacitaciones</a>
+    <a data-hd-link href="#metodologia" style="font-size:13px;font-weight:500;letter-spacing:.3px;color:#1c1a19;transition:color .35s">Metodología</a>
+    <a data-hd-link href="#contacto" style="font-size:13px;font-weight:500;letter-spacing:.3px;color:#1c1a19;transition:color .35s">Contacto</a>
+    <a href="#capacitaciones" style="display:flex;align-items:center;gap:10px;background:#741D22;color:#F5F3EF;font-size:12.5px;font-weight:600;letter-spacing:.4px;padding:11px 18px;border:1px solid #741D22;transition:background .2s,transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Ver capacitaciones <span style="font-size:15px;line-height:0">→</span></a>
+  </nav>
+  <button data-hd-burger onClick="{{ toggleMenu }}" aria-label="Menú" style="display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:transparent;border:none;cursor:pointer;padding:11px;margin:-11px -11px -11px 0">
+    <span data-burger-line style="display:block;height:2px;width:100%;background:#1c1a19;transition:transform .25s,opacity .25s,background .35s"></span>
+    <span data-burger-line style="display:block;height:2px;width:100%;background:#1c1a19;transition:transform .25s,opacity .25s,background .35s"></span>
+    <span data-burger-line style="display:block;height:2px;width:100%;background:#1c1a19;transition:transform .25s,opacity .25s,background .35s"></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section id="top" data-hero style="position:relative;background:#EAE1D0;color:#1c130d;padding:clamp(120px,15vh,180px) clamp(20px,5vw,64px) clamp(60px,8vh,96px)">
+  <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,72px);align-items:end" data-g="hero">
+    <div>
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:34px">
+        <span style="width:38px;height:1px;background:#741D22"></span>
+        <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(28,19,13,.6);font-weight:600">Formación profesional · Uruguay</span>
+      </div>
+      <h1 style="margin:0;font-size:clamp(44px,6.6vw,104px);line-height:.94;font-weight:800;letter-spacing:-.02em;text-wrap:balance">Profesionalizando<br>el oficio <span style="color:#741D22">cárnico.</span></h1>
+      <p style="margin:34px 0 0;max-width:560px;font-size:clamp(16px,1.4vw,19px);line-height:1.6;color:rgba(28,19,13,.72);font-weight:400">Capacitación técnica y práctica para quienes quieren desarrollar sus habilidades y profesionalizarse dentro de la industria cárnica.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+        <a href="#capacitaciones" style="display:flex;align-items:center;gap:12px;background:#741D22;color:#F5F3EF;font-size:14px;font-weight:600;letter-spacing:.4px;padding:16px 26px;border:1px solid #741D22;transition:background .2s,transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Conocé nuestras capacitaciones <span style="font-size:17px;line-height:0">→</span></a>
+        <a href="#contacto" style="display:flex;align-items:center;gap:12px;background:transparent;color:#1c130d;font-size:14px;font-weight:600;letter-spacing:.4px;padding:16px 26px;border:1px solid rgba(28,19,13,.28);transition:border-color .2s,background .2s" onMouseOver="{{ heroOutOver }}" onMouseOut="{{ heroOutOut }}">Contactanos</a>
+      </div>
+    </div>
+    <!-- graphic stand-in: precision panel -->
+    <div style="position:relative;aspect-ratio:3/4;background:#741D22;overflow:hidden">
+      <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+        <line x1="0" y1="90" x2="300" y2="300" stroke="#F5F3EF" stroke-width="1" opacity=".5"/>
+        <g stroke="#F5F3EF" stroke-width="1" opacity=".28">
+          <line x1="40" y1="0" x2="40" y2="400"/><line x1="0" y1="40" x2="300" y2="40"/>
+        </g>
+        <g stroke="#F5F3EF" stroke-width="1" opacity=".55">
+          <line x1="34" y1="40" x2="46" y2="40"/><line x1="40" y1="34" x2="40" y2="46"/>
+        </g>
+        <circle cx="220" cy="150" r="46" fill="none" stroke="#F5F3EF" stroke-width="1" opacity=".4"/>
+        <circle cx="220" cy="150" r="72" fill="none" stroke="#F5F3EF" stroke-width="1" opacity=".22"/>
+      </svg>
+      <span style="position:absolute;left:16px;bottom:14px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.7);font-family:ui-monospace,Menlo,monospace">Imagen · manos + técnica</span>
+    </div>
+  </div>
+  <!-- scrolling keyword strip -->
+  <div style="margin-top:clamp(48px,7vh,88px);border-top:1px solid rgba(28,19,13,.15);border-bottom:1px solid rgba(28,19,13,.15);overflow:hidden;white-space:nowrap;padding:16px 0">
+    <div style="display:inline-flex;gap:0;animation:cpcuMarquee 32s linear infinite">
+      <div style="display:inline-flex;align-items:center">
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Inscripciones abiertas</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Inscripciones hasta el 18 de agosto</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Formación 100% gratuita</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Cupos limitados · 20 a 25 lugares</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Formación dual · práctica remunerada en empresa</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+      </div>
+      <div style="display:inline-flex;align-items:center" aria-hidden="true">
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Inscripciones abiertas</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Inscripciones hasta el 18 de agosto</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Formación 100% gratuita</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Cupos limitados · 20 a 25 lugares</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+        <span style="font-size:clamp(15px,1.4vw,19px);font-weight:600;letter-spacing:1px;color:#1c130d;padding:0 28px">Formación dual · práctica remunerada en empresa</span><span style="width:6px;height:6px;background:#741D22;border-radius:50%"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CPCU -->
+<section id="cpcu" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div data-g="two" style="display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(28px,5vw,90px);align-items:start">
+      <div data-reveal style="display:flex;flex-direction:column;gap:22px">
+        <div style="aspect-ratio:16/10;background:#E7E3DC;display:flex;align-items:center;justify-content:center;padding:clamp(8px,1.5vw,20px)">
+          <img src="assets/cpcu-lockup-bordo.png" alt="CPCU — Centro Profesional Cárnico del Uruguay" style="width:100%;height:100%;object-fit:contain;display:block">
+        </div>
+        <div style="position:relative;aspect-ratio:16/9;background:#1c130d;overflow:hidden">
+          <svg viewBox="0 0 400 225" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><circle cx="320" cy="112" r="60" fill="none" stroke="#741D22" stroke-width="1.5" opacity=".8"/><circle cx="320" cy="112" r="30" fill="none" stroke="#F5F3EF" stroke-width="1" opacity=".4"/></svg>
+          <span style="position:absolute;left:14px;bottom:12px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.6);font-family:ui-monospace,Menlo,monospace">Imagen · alumnos + docentes</span>
+        </div>
+      </div>
+      <div data-reveal>
+        <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">01 — CPCU</span>
+        <h2 style="margin:22px 0 0;font-size:clamp(32px,4.4vw,64px);line-height:1.02;font-weight:800;letter-spacing:-.02em;max-width:12ch;text-wrap:balance">Mucho más que aprender un oficio.</h2>
+        <div style="width:56px;height:2px;background:#741D22;margin:36px 0"></div>
+        <p style="margin:0 0 24px;font-size:clamp(16px,1.3vw,19px);line-height:1.7;color:#3a3733;max-width:52ch">CPCU nace con el objetivo de profesionalizar y fortalecer el trabajo dentro del sector cárnico a través de formación técnica, práctica y especializada.</p>
+        <p style="margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.7;color:#3a3733;max-width:52ch">Creamos espacios de capacitación donde el conocimiento, la experiencia y la práctica se combinan para preparar profesionales capaces de desarrollarse dentro de una industria en constante evolución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFIESTO -->
+<section style="background:#741D22;color:#F5F3EF;padding:clamp(90px,15vh,190px) clamp(20px,5vw,64px)">
+  <div style="max-width:1280px;margin:0 auto">
+    <h2 data-reveal style="margin:0;font-size:clamp(40px,8vw,132px);line-height:.96;font-weight:800;letter-spacing:-.025em;max-width:15ch">El conocimiento transforma el oficio.</h2>
+    <p data-reveal style="margin:clamp(36px,6vh,64px) 0 0;font-size:clamp(17px,1.6vw,23px);line-height:1.6;color:rgba(245,243,239,.82);max-width:60ch;font-weight:400">Formar mejores profesionales también significa construir una industria más preparada, eficiente y capacitada.</p>
+  </div>
+</section>
+
+<!-- CAPACITACIONES -->
+<section id="capacitaciones" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div data-reveal style="margin-bottom:clamp(28px,4vh,44px)">
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">02 — Capacitaciones</span>
+      <h2 style="margin:20px 0 0;font-size:clamp(36px,5.5vw,84px);line-height:.98;font-weight:800;letter-spacing:-.02em">Formación abierta</h2>
+    </div>
+    <div data-reveal data-g="two" style="display:grid;grid-template-columns:.82fr 1fr;gap:clamp(28px,4vw,64px);align-items:center;margin-bottom:clamp(52px,8vh,96px)">
+      <div style="position:relative;aspect-ratio:3/4;background:#741D22;overflow:hidden">
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#F5F3EF" stroke-width="1" opacity=".28"><line x1="40" y1="0" x2="40" y2="400"/><line x1="0" y1="40" x2="300" y2="40"/></g><line x1="0" y1="120" x2="300" y2="330" stroke="#F5F3EF" stroke-width="1" opacity=".5"/><circle cx="210" cy="170" r="52" fill="none" stroke="#F5F3EF" stroke-width="1" opacity=".4"/></svg>
+        <span style="position:absolute;left:16px;bottom:14px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.7);font-family:ui-monospace,Menlo,monospace">Imagen · aprendiz de carnicería</span>
+      </div>
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:22px"><span style="width:9px;height:9px;background:#741D22;border-radius:50%"></span><span style="font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#741D22;font-weight:700">Inscripciones abiertas</span></div>
+        <h3 style="margin:0;font-size:clamp(28px,3.4vw,48px);line-height:1.02;font-weight:800;letter-spacing:-.02em">Aprendiz de Carnicería</h3>
+        <p style="margin:20px 0 0;font-size:clamp(16px,1.3vw,18px);line-height:1.65;color:#3a3733;max-width:46ch">Formate como carnicero profesional. Sin costo para vos y con práctica remunerada en Supermercados El Dorado.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin:28px 0 0">
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">Becas</div><div style="font-size:13px;color:#6b655d">para que puedas formarte</div></div>
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">Práctica remunerada</div><div style="font-size:13px;color:#6b655d">en Supermercados El Dorado</div></div>
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">Etapa 1 · 1 mes</div><div style="font-size:13px;color:#6b655d">clases en aula</div></div>
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">Etapa 2 · 5 meses</div><div style="font-size:13px;color:#6b655d">práctica en El Dorado</div></div>
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">Cupos 20–25</div><div style="font-size:13px;color:#6b655d">por grupo</div></div>
+          <div style="border-top:1px solid rgba(24,24,24,.15);padding-top:12px"><div style="font-size:13px;font-weight:700">100% gratuita</div><div style="font-size:13px;color:#6b655d">formación sin costo</div></div>
+        </div>
+        <a href="#contacto" style="display:inline-flex;align-items:center;gap:12px;background:#741D22;color:#F5F3EF;font-size:14px;font-weight:600;padding:15px 26px;margin-top:30px;transition:transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Postulate antes del 18 de agosto <span style="font-size:16px;line-height:0">→</span></a>
+      </div>
+    </div>
+
+    <!-- program overview -->
+    <article data-reveal data-course style="background:#1c130d;color:#F5F3EF;padding:clamp(28px,3.5vw,52px);transition:transform .3s">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px">
+        <span style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#F5F3EF;border:1px solid rgba(245,243,239,.35);padding:6px 12px">Formación Dual</span>
+        <span style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#F5F3EF;border:1px solid rgba(245,243,239,.35);padding:6px 12px">Nivel inicial</span>
+        <span style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#F5F3EF;border:1px solid rgba(245,243,239,.35);padding:6px 12px">Práctica remunerada</span>
+      </div>
+      <p style="margin:0;max-width:70ch;font-size:clamp(16px,1.4vw,19px);line-height:1.65;color:rgba(245,243,239,.82)">Un itinerario que integra formación en aula y práctica intensiva en empresa, con progresión pedagógica de la observación a la autonomía y evaluación conjunta entre el referente educativo y el tutor de empresa.</p>
+      <div data-g="stats4" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,40px);margin-top:clamp(28px,4vh,44px);padding-top:clamp(24px,3vh,32px);border-top:1px solid rgba(245,243,239,.18)">
+        <div><div style="font-size:clamp(30px,3.2vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1">6</div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(245,243,239,.55);margin-top:8px">meses de duración</div></div>
+        <div><div style="font-size:clamp(30px,3.2vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1">30 / 70</div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(245,243,239,.55);margin-top:8px">aula / práctica</div></div>
+        <div><div style="font-size:clamp(30px,3.2vw,46px);font-weight:800;letter-spacing:-.02em;line-height:1">20–25</div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(245,243,239,.55);margin-top:8px">cupos por grupo</div></div>
+      </div>
+      <a href="#contacto" style="display:inline-flex;align-items:center;gap:12px;background:#741D22;color:#F5F3EF;font-size:14px;font-weight:600;padding:15px 26px;margin-top:clamp(28px,4vh,40px);transition:transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Consultar por el programa <span style="font-size:16px;line-height:0">→</span></a>
+    </article>
+
+    <div data-reveal style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:16px;margin:clamp(48px,7vh,80px) 0 clamp(24px,3vh,36px)">
+      <h3 style="margin:0;font-size:clamp(22px,2.4vw,34px);font-weight:800;letter-spacing:-.01em">Contenidos de formación</h3>
+      <span style="font-size:13px;color:#6b655d">7 módulos en aula · práctica formativa en empresa</span>
+    </div>
+    <div data-g="cards4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,20px)">
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">01</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Integración y encuadre dual</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Roles y responsabilidades de la modalidad dual, cultura de trabajo, seguridad personal y acuerdos de convivencia.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">02</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Sector cárnico y punto de venta</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Cadena cárnica y rol del eslabón comercial, calidad comercial y nociones de trazabilidad y registro por lotes.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">03</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Inocuidad, higiene y manipulación</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Buenas prácticas de higiene, prevención de contaminación cruzada y control de temperaturas, tiempos y almacenamiento.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">04</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Técnicas iniciales y herramientas</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Identificación de cortes y porcionado, uso seguro de cuchillos y chaira, afilado, ergonomía y control visual de calidad.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">05</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Elaboraciones y valor agregado</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Preparaciones simples bajo receta estándar, control de rotación, rotulado interno e higiene de equipos y superficies.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">06</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Punto de venta y atención al cliente</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Exhibición en vitrina, reposición, FIFO/FEFO, comunicación con clientes y presentación del puesto.</p></article>
+      <article data-reveal data-course style="background:#E7E3DC;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:13px;font-weight:800;color:#741D22">07</span></div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Competencias transversales</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:#4a463f">Trabajo en equipo, comunicación, responsabilidad y pensamiento crítico aplicado al control del proceso.</p></article>
+      <article data-reveal data-course style="background:#741D22;color:#F5F3EF;padding:clamp(20px,2vw,28px);display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s"><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:rgba(245,243,239,.75)">En empresa</span></div><div><h4 style="margin:16px 0 0;font-size:16.5px;line-height:1.2;font-weight:800;letter-spacing:-.01em">Práctica formativa</h4><p style="margin:12px 0 0;font-size:13.5px;line-height:1.55;color:rgba(245,243,239,.82)">Recepción, preparación, exhibición y venta con progresión de observación a autonomía y evaluación conjunta.</p></div></article>
+    </div>
+    <!-- ediciones anteriores -->
+    <div data-reveal style="margin-top:clamp(56px,8vh,90px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:clamp(20px,3vh,32px)">
+        <h3 style="margin:0;font-size:clamp(22px,2.4vw,34px);font-weight:800;letter-spacing:-.01em">Ediciones anteriores</h3>
+        <span style="font-size:13px;color:#6b655d">Tocá una edición para ampliar</span>
+      </div>
+      <div data-g="cards4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,20px)">
+        <button onClick="{{ openThumb }}" data-src="assets/flyer-aprendiz.png" style="all:unset;cursor:zoom-in;display:block;position:relative;aspect-ratio:3/4;background:#1c130d;overflow:hidden"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><circle cx="150" cy="170" r="70" fill="none" stroke="#741D22" stroke-width="1.5" opacity=".8"/><line x1="0" y1="60" x2="300" y2="340" stroke="#F5F3EF" stroke-width="1" opacity=".25"/></svg><span style="position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(28,19,13,.85));color:#F5F3EF;font-size:11px;letter-spacing:.5px;padding:22px 12px 12px;font-weight:600">Aprendiz de Carnicería</span></button>
+        <div style="position:relative;aspect-ratio:3/4;background:#F0ECE4;border:1px dashed rgba(24,24,24,.22);display:flex;align-items:center;justify-content:center;text-align:center"><span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8a847a;max-width:16ch;line-height:1.5">Espacio para próximas ediciones</span></div>
+        <div style="position:relative;aspect-ratio:3/4;background:#F0ECE4;border:1px dashed rgba(24,24,24,.22);display:flex;align-items:center;justify-content:center;text-align:center"><span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8a847a;max-width:16ch;line-height:1.5">Espacio para próximas ediciones</span></div>
+        <div style="position:relative;aspect-ratio:3/4;background:#F0ECE4;border:1px dashed rgba(24,24,24,.22);display:flex;align-items:center;justify-content:center;text-align:center"><span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#8a847a;max-width:16ch;line-height:1.5">Espacio para próximas ediciones</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section id="metodologia" style="background:#1c130d;color:#F5F3EF;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div data-reveal style="max-width:60ch;margin-bottom:clamp(48px,7vh,90px)">
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#B23B33;font-weight:700">03 — Metodología</span>
+      <h2 style="margin:20px 0 0;font-size:clamp(36px,5.5vw,84px);line-height:.98;font-weight:800;letter-spacing:-.02em">Aprender haciendo.</h2>
+      <p style="margin:26px 0 0;font-size:17px;line-height:1.65;color:rgba(245,243,239,.72)">Formación dual que alterna aula y empresa. Cada concepto se demuestra, se practica en el puesto real y se corrige con retroalimentación constante — del «ver hacer» al «hacer con autonomía».</p>
+    </div>
+    <div data-g="three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,56px)">
+      <div data-reveal style="border-top:2px solid #741D22;padding-top:26px">
+        <div style="font-size:clamp(64px,8vw,124px);font-weight:800;line-height:.85;letter-spacing:-.03em;color:rgba(245,243,239,.14)">01</div>
+        <h3 style="margin:18px 0 0;font-size:24px;font-weight:700">Conocimiento</h3>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:rgba(245,243,239,.7);max-width:34ch">Comprender los productos, herramientas, procesos y fundamentos del oficio.</p>
+      </div>
+      <div data-reveal style="border-top:2px solid #741D22;padding-top:26px">
+        <div style="font-size:clamp(64px,8vw,124px);font-weight:800;line-height:.85;letter-spacing:-.03em;color:rgba(245,243,239,.14)">02</div>
+        <h3 style="margin:18px 0 0;font-size:24px;font-weight:700">Técnica</h3>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:rgba(245,243,239,.7);max-width:34ch">Aprender procedimientos y desarrollar precisión en cada etapa del trabajo.</p>
+      </div>
+      <div data-reveal style="border-top:2px solid #741D22;padding-top:26px">
+        <div style="font-size:clamp(64px,8vw,124px);font-weight:800;line-height:.85;letter-spacing:-.03em;color:rgba(245,243,239,.14)">03</div>
+        <h3 style="margin:18px 0 0;font-size:24px;font-weight:700">Práctica</h3>
+        <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:rgba(245,243,239,.7);max-width:34ch">Aplicar lo aprendido en situaciones reales acompañados por profesionales.</p>
+      </div>
+    </div>
+    <!-- alternancia -->
+    <div data-reveal style="margin-top:clamp(56px,8vh,96px)">
+      <div style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(245,243,239,.5);font-weight:600;margin-bottom:24px">Alternancia aula–empresa · 6 meses</div>
+      <div data-g="three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,32px)">
+        <div style="border-top:1px solid rgba(245,243,239,.25);padding-top:20px"><div style="font-size:13px;font-weight:700;color:#B23B33">Mes 1</div><div style="font-size:17px;font-weight:700;margin-top:8px">Integración e inducción</div><p style="margin:10px 0 0;font-size:14px;line-height:1.55;color:rgba(245,243,239,.65)">Higiene, inocuidad y seguridad. Observación y familiarización en el puesto de trabajo.</p></div>
+        <div style="border-top:1px solid rgba(245,243,239,.25);padding-top:20px"><div style="font-size:13px;font-weight:700;color:#B23B33">Meses 2–5</div><div style="font-size:17px;font-weight:700;margin-top:8px">Práctica supervisada</div><p style="margin:10px 0 0;font-size:14px;line-height:1.55;color:rgba(245,243,239,.65)">Técnicas, elaboraciones, vitrina y atención al cliente. Evaluación de desempeño intermedia.</p></div>
+        <div style="border-top:1px solid rgba(245,243,239,.25);padding-top:20px"><div style="font-size:13px;font-weight:700;color:#B23B33">Mes 6</div><div style="font-size:17px;font-weight:700;margin-top:8px">Autonomía e inserción</div><p style="margin:10px 0 0;font-size:14px;line-height:1.55;color:rgba(245,243,239,.65)">Autonomía progresiva, evaluación final conjunta y plan de inserción laboral.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESIONALIZACIÓN -->
+<section style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div data-g="two" style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,5vw,90px);align-items:center">
+    <div data-reveal>
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">04 — Profesionalización</span>
+      <h2 style="margin:22px 0 0;font-size:clamp(34px,4.6vw,68px);line-height:1.0;font-weight:800;letter-spacing:-.02em;max-width:13ch;text-wrap:balance">Un oficio que también se estudia.</h2>
+      <div style="width:56px;height:2px;background:#741D22;margin:34px 0"></div>
+      <p style="margin:0 0 22px;font-size:17px;line-height:1.7;color:#3a3733;max-width:52ch">La industria cárnica evoluciona constantemente. Nuevas técnicas, procesos, herramientas y estándares requieren profesionales cada vez más capacitados.</p>
+      <p style="margin:0;font-size:17px;line-height:1.7;color:#3a3733;max-width:52ch">En CPCU buscamos acompañar esa transformación a través de formación especializada.</p>
+    </div>
+    <div data-reveal style="position:relative;aspect-ratio:4/5;background:#E7E3DC;overflow:hidden">
+      <svg viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%">
+        <g stroke="#1c130d" stroke-width="1" opacity=".18"><line x1="0" y1="50" x2="320" y2="50"/><line x1="0" y1="120" x2="320" y2="120"/><line x1="0" y1="190" x2="320" y2="190"/><line x1="0" y1="260" x2="320" y2="260"/><line x1="0" y1="330" x2="320" y2="330"/></g>
+        <line x1="60" y1="380" x2="260" y2="30" stroke="#741D22" stroke-width="1.5" opacity=".7"/>
+        <circle cx="200" cy="200" r="54" fill="none" stroke="#741D22" stroke-width="1" opacity=".45"/>
+      </svg>
+      <span style="position:absolute;left:16px;bottom:14px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#6b655d;font-family:ui-monospace,Menlo,monospace">Imagen · herramientas + enseñanza</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIRIGIDO A -->
+<section style="padding:0 clamp(20px,5vw,64px) clamp(80px,12vh,150px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <h2 data-reveal style="margin:0 0 clamp(36px,5vh,60px);font-size:clamp(30px,4vw,58px);line-height:1.02;font-weight:800;letter-spacing:-.02em;max-width:16ch">Formación para cada etapa profesional.</h2>
+    <div data-g="dir4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(24,24,24,.15)">
+      <div data-reveal style="padding:34px 26px 34px 0;border-right:1px solid rgba(24,24,24,.12)"><div style="font-size:13px;font-weight:700;color:#741D22">A</div><p style="margin:16px 0 0;font-size:16.5px;line-height:1.5;font-weight:500">Personas que quieren aprender el oficio.</p></div>
+      <div data-reveal style="padding:34px 26px;border-right:1px solid rgba(24,24,24,.12)"><div style="font-size:13px;font-weight:700;color:#741D22">B</div><p style="margin:16px 0 0;font-size:16.5px;line-height:1.5;font-weight:500">Trabajadores que quieren mejorar sus habilidades.</p></div>
+      <div data-reveal style="padding:34px 26px;border-right:1px solid rgba(24,24,24,.12)"><div style="font-size:13px;font-weight:700;color:#741D22">C</div><p style="margin:16px 0 0;font-size:16.5px;line-height:1.5;font-weight:500">Carnicerías que buscan capacitar a sus equipos.</p></div>
+      <div data-reveal style="padding:34px 0 34px 26px"><div style="font-size:13px;font-weight:700;color:#741D22">D</div><p style="margin:16px 0 0;font-size:16.5px;line-height:1.5;font-weight:500">Empresas del sector que necesitan formación especializada.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALACIONES -->
+<section style="background:#E7E3DC;padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div data-reveal style="max-width:60ch;margin-bottom:clamp(40px,6vh,64px)">
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">05 — Instalaciones</span>
+      <h2 style="margin:20px 0 0;font-size:clamp(32px,4.4vw,64px);line-height:1.0;font-weight:800;letter-spacing:-.02em;max-width:16ch">Un espacio diseñado para aprender trabajando.</h2>
+    </div>
+    <div data-g="gallery" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:clamp(12px,1.5vw,20px)">
+      <div style="grid-row:span 2;position:relative;aspect-ratio:1/1;background:#1c130d;overflow:hidden">
+        <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#741D22" stroke-width="1.5" opacity=".8"><circle cx="200" cy="200" r="120" fill="none"/><circle cx="200" cy="200" r="70" fill="none" stroke="#F5F3EF" stroke-width="1" opacity=".4"/></g><line x1="0" y1="0" x2="400" y2="400" stroke="#F5F3EF" stroke-width="1" opacity=".2"/></svg>
+        <span style="position:absolute;left:18px;bottom:16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.7);font-family:ui-monospace,Menlo,monospace">Imagen · sala de práctica</span>
+      </div>
+      <div style="position:relative;aspect-ratio:1/1;background:#741D22;overflow:hidden"><svg viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%"><line x1="20" y1="180" x2="180" y2="20" stroke="#F5F3EF" stroke-width="1" opacity=".5"/></svg><span style="position:absolute;left:12px;bottom:11px;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,243,239,.7);font-family:ui-monospace,Menlo,monospace">Equipamiento</span></div>
+      <div style="position:relative;aspect-ratio:1/1;background:#F5F3EF;overflow:hidden;border:1px solid rgba(24,24,24,.12)"><svg viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%"><g stroke="#1c130d" stroke-width="1" opacity=".2"><line x1="0" y1="66" x2="200" y2="66"/><line x1="0" y1="133" x2="200" y2="133"/></g></svg><span style="position:absolute;left:12px;bottom:11px;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-family:ui-monospace,Menlo,monospace">Herramientas</span></div>
+      <div style="position:relative;aspect-ratio:2/1;background:#1c130d;overflow:hidden;grid-column:span 2"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%"><circle cx="330" cy="100" r="50" fill="none" stroke="#741D22" stroke-width="1.5" opacity=".8"/><line x1="0" y1="100" x2="400" y2="100" stroke="#F5F3EF" stroke-width="1" opacity=".2"/></svg><span style="position:absolute;left:16px;bottom:13px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.7);font-family:ui-monospace,Menlo,monospace">Imagen · docentes especializados</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCENTES -->
+<section style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <div data-reveal style="margin-bottom:clamp(40px,6vh,64px)">
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">06 — Docentes</span>
+      <h2 style="margin:20px 0 0;font-size:clamp(32px,4.4vw,64px);line-height:1.0;font-weight:800;letter-spacing:-.02em">Aprendé de quienes conocen el oficio.</h2>
+    </div>
+    <div data-g="three" style="display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,52px)">
+      <article data-reveal style="border-top:2px solid #741D22;padding-top:28px">
+        <h3 style="margin:0;font-size:clamp(22px,2vw,28px);font-weight:800;letter-spacing:-.01em">Referente educativo</h3>
+        <div style="margin:10px 0 0;font-size:14px;font-weight:600;color:#741D22">Acompañamiento y seguimiento</div>
+        <div style="width:40px;height:1px;background:rgba(24,24,24,.2);margin:22px 0"></div>
+        <div style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:700;margin-bottom:8px">Formación</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3a3733">Docente con formación pedagógica y experiencia en formación dual. Coordina el vínculo entre aula, empresa y evaluación.</p>
+      </article>
+      <article data-reveal style="border-top:2px solid #741D22;padding-top:28px">
+        <h3 style="margin:0;font-size:clamp(22px,2vw,28px);font-weight:800;letter-spacing:-.01em">Tutor de empresa</h3>
+        <div style="margin:10px 0 0;font-size:14px;font-weight:600;color:#741D22">Práctica en el puesto</div>
+        <div style="width:40px;height:1px;background:rgba(24,24,24,.2);margin:22px 0"></div>
+        <div style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:700;margin-bottom:8px">Formación</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3a3733">Carnicero profesional a cargo del punto de venta. Guía la práctica diaria y evalúa el desempeño en el lugar de trabajo.</p>
+      </article>
+      <article data-reveal style="border-top:2px solid #741D22;padding-top:28px">
+        <h3 style="margin:0;font-size:clamp(22px,2vw,28px);font-weight:800;letter-spacing:-.01em">Co-tutor técnico</h3>
+        <div style="margin:10px 0 0;font-size:14px;font-weight:600;color:#741D22">Especialista carnicero</div>
+        <div style="width:40px;height:1px;background:rgba(24,24,24,.2);margin:22px 0"></div>
+        <div style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:700;margin-bottom:8px">Formación</div>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#3a3733">Instructor carnicero certificado, especializado en técnicas de corte, elaboraciones e inocuidad alimentaria.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="background:#1c130d;color:#F5F3EF;padding:clamp(90px,14vh,180px) clamp(20px,5vw,64px);position:relative;overflow:hidden">
+  <svg viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;opacity:.5"><line x1="0" y1="80" x2="1440" y2="360" stroke="#741D22" stroke-width="1.5"/><circle cx="1240" cy="140" r="120" fill="none" stroke="#741D22" stroke-width="1"/></svg>
+  <div data-reveal style="max-width:1280px;margin:0 auto;position:relative">
+    <h2 style="margin:0;font-size:clamp(38px,6.4vw,110px);line-height:.98;font-weight:800;letter-spacing:-.025em;max-width:15ch">El próximo paso en tu formación empieza acá.</h2>
+    <p style="margin:32px 0 0;font-size:clamp(17px,1.5vw,21px);line-height:1.6;color:rgba(245,243,239,.75);max-width:52ch">Conocé nuestras próximas capacitaciones y encontrá la formación que mejor se adapte a vos.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:44px">
+      <a href="#capacitaciones" style="display:flex;align-items:center;gap:12px;background:#741D22;color:#F5F3EF;font-size:14px;font-weight:600;padding:16px 26px;border:1px solid #741D22;transition:transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Ver próximas capacitaciones <span style="font-size:17px;line-height:0">→</span></a>
+      <a href="{{ waLink }}" target="_blank" style="display:flex;align-items:center;gap:12px;background:transparent;color:#F5F3EF;font-size:14px;font-weight:600;padding:16px 26px;border:1px solid rgba(245,243,239,.35);transition:border-color .2s,background .2s" onMouseOver="{{ ghostOver }}" onMouseOut="{{ ghostOut }}">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="padding:clamp(80px,12vh,150px) clamp(20px,5vw,64px)">
+  <div data-g="two" style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,5vw,90px)">
+    <div data-reveal>
+      <span style="font-size:11px;letter-spacing:3.5px;text-transform:uppercase;color:#741D22;font-weight:700">Contacto</span>
+      <h2 style="margin:20px 0 0;font-size:clamp(30px,3.8vw,54px);line-height:1.02;font-weight:800;letter-spacing:-.02em;max-width:14ch">Escribinos y te contamos más.</h2>
+      <p style="margin:26px 0 0;font-size:16px;line-height:1.65;color:#3a3733;max-width:40ch">Consultá por cursos, fechas e inscripciones. Respondemos por correo o directamente por WhatsApp.</p>
+      <a href="{{ waLink }}" target="_blank" style="display:inline-flex;align-items:center;gap:12px;margin-top:32px;background:#741D22;color:#F5F3EF;font-size:14px;font-weight:600;padding:15px 24px;transition:transform .2s" onMouseOver="{{ btnOver }}" onMouseOut="{{ btnOut }}">Consultar por WhatsApp <span style="font-size:16px;line-height:0">→</span></a>
+    </div>
+    <form data-reveal data-g="form2" onSubmit="{{ onSubmit }}" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,32px)">
+      <label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Nombre</span><input name="nombre" required style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"></label>
+      <label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Apellido</span><input name="apellido" required style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"></label>
+      <label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Email</span><input name="email" type="email" required style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"></label>
+      <label style="display:flex;flex-direction:column;gap:9px"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Teléfono</span><input name="telefono" style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"></label>
+      <label style="display:flex;flex-direction:column;gap:9px;grid-column:span 2"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Capacitación de interés</span><select name="capacitacion" style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"><option>Aprendiz de Carnicería (Formación Dual)</option><option>Consulta general</option></select></label>
+      <label style="display:flex;flex-direction:column;gap:9px;grid-column:span 2"><span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#6b655d;font-weight:600">Mensaje</span><textarea name="mensaje" rows="3" style="border:none;border-bottom:1px solid rgba(24,24,24,.28);background:transparent;padding:10px 0;font-size:16px;color:#1c1a19;outline:none;resize:vertical" onFocus="{{ fldFocus }}" onBlur="{{ fldBlur }}"></textarea></label>
+      <button type="submit" style="grid-column:span 2;justify-self:start;display:flex;align-items:center;gap:12px;background:#1c130d;color:#F5F3EF;font-size:14px;font-weight:600;padding:16px 30px;border:none;cursor:pointer;transition:background .2s" onMouseOver="{{ darkOver }}" onMouseOut="{{ darkOut }}">{{ submitLabel }} <span style="font-size:16px;line-height:0">→</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#1c130d;color:#F5F3EF;padding:clamp(56px,8vh,80px) clamp(20px,5vw,64px) 40px">
+  <div style="max-width:1360px;margin:0 auto">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(245,243,239,.15)">
+      <div>
+        <img src="assets/cpcu-wordmark-cow.png" alt="CPCU" style="height:66px;width:auto;display:block;filter:brightness(0) invert(1)">
+        <p style="margin:12px 0 0;font-size:13.5px;color:rgba(245,243,239,.6);max-width:32ch">Centro Profesional Cárnico del Uruguay. Formación técnica y práctica para el sector cárnico.</p>
+      </div>
+      <div style="display:flex;gap:clamp(40px,6vw,90px)">
+        <div><div style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,243,239,.45);margin-bottom:16px">Navegación</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#top" style="color:rgba(245,243,239,.85);font-size:14px">Inicio</a><a href="#cpcu" style="color:rgba(245,243,239,.85);font-size:14px">CPCU</a><a href="#capacitaciones" style="color:rgba(245,243,239,.85);font-size:14px">Capacitaciones</a><a href="#contacto" style="color:rgba(245,243,239,.85);font-size:14px">Contacto</a></div></div>
+        <div><div style="font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,243,239,.45);margin-bottom:16px">Contacto</div><div style="display:flex;flex-direction:column;gap:11px"><a href="#" style="color:rgba(245,243,239,.85);font-size:14px">Instagram</a><a href="{{ waLink }}" target="_blank" style="color:rgba(245,243,239,.85);font-size:14px">WhatsApp</a><a href="mailto:sofiapayque@gmail.com" style="color:rgba(245,243,239,.85);font-size:14px">Email</a></div></div>
+      </div>
+    </div>
+    <div style="padding:32px 0 4px">
+      <div style="font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,243,239,.45);margin-bottom:18px">Con el apoyo de</div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:clamp(24px,3vw,44px)">
+        <img src="assets/inefop-formacion-dual.png" alt="INEFOP — Formación Dual" style="height:clamp(44px,5vw,62px);width:auto;display:block">
+        <img src="assets/eldorado.png" alt="El Dorado — Supermercado" style="height:clamp(36px,4vw,46px);width:auto;display:block">
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(245,243,239,.15);font-size:12.5px;color:rgba(245,243,239,.45)"><span>© 2026 CPCU · Centro Profesional Cárnico del Uruguay</span><span>Uruguay</span></div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div data-lightbox style="position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(15,10,7,.92);padding:clamp(16px,4vw,56px);cursor:zoom-out" onClick="{{ closeLb }}">
+  <img data-lightbox-img alt="" style="max-width:100%;max-height:100%;display:block;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+  <button onClick="{{ closeLb }}" aria-label="Cerrar" style="position:absolute;top:20px;right:24px;background:transparent;border:none;color:#F5F3EF;font-size:36px;line-height:1;cursor:pointer">×</button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;revealOnScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comportamiento&quot;}}">
+class Component extends DCLogic {
+  state = { submitLabel: "Enviar consulta" };
+
+  renderVals() {
+    return {
+      submitLabel: this.state.submitLabel,
+      waLink: "https://wa.me/59800000000",
+      heroOutOver:(e)=>{ e.currentTarget.style.background="rgba(116,29,34,.07)"; e.currentTarget.style.borderColor="#741D22"; },
+      heroOutOut:(e)=>{ e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="rgba(28,19,13,.28)"; },
+      openFlyer:()=>{ const lb=document.querySelector("[data-lightbox]"); const im=lb&&lb.querySelector("[data-lightbox-img]"); if(im) im.src="assets/flyer-aprendiz.png"; if(lb) lb.style.display="flex"; },
+      openThumb:(e)=>{ const src=e.currentTarget.getAttribute("data-src"); const lb=document.querySelector("[data-lightbox]"); const im=lb&&lb.querySelector("[data-lightbox-img]"); if(im&&src) im.src=src; if(lb) lb.style.display="flex"; },
+      closeLb:()=>{ const lb=document.querySelector("[data-lightbox]"); if(lb) lb.style.display="none"; },
+      btnOver:(e)=>{ e.currentTarget.style.transform="translateY(-2px)"; e.currentTarget.style.filter="brightness(1.08)"; },
+      btnOut:(e)=>{ e.currentTarget.style.transform="none"; e.currentTarget.style.filter="none"; },
+      ghostOver:(e)=>{ e.currentTarget.style.background="rgba(245,243,239,.08)"; e.currentTarget.style.borderColor="rgba(245,243,239,.7)"; },
+      ghostOut:(e)=>{ e.currentTarget.style.background="transparent"; e.currentTarget.style.borderColor="rgba(245,243,239,.35)"; },
+      darkOver:(e)=>{ e.currentTarget.style.background="#741D22"; },
+      darkOut:(e)=>{ e.currentTarget.style.background="#1c130d"; },
+      fldFocus:(e)=>{ e.currentTarget.style.borderBottomColor="#741D22"; },
+      fldBlur:(e)=>{ e.currentTarget.style.borderBottomColor="rgba(24,24,24,.28)"; },
+      formEndpoint: "https://formspree.io/f/mrpzlpqo",
+      onSubmit:(e)=>{ e.preventDefault(); const f=e.currentTarget; const ep=this.renderVals().formEndpoint; this.setState({submitLabel:"Enviando…"}); fetch(ep,{ method:"POST", body:new FormData(f), headers:{Accept:"application/json"} }).then(r=>{ if(r.ok){ f.reset(); this.setState({submitLabel:"¡Gracias! Te contactamos"}); } else { this.setState({submitLabel:"Error, probá de nuevo"}); } }).catch(()=>this.setState({submitLabel:"Error, probá de nuevo"})).finally(()=>{ setTimeout(()=>this.setState({submitLabel:"Enviar consulta"}),3600); }); },
+      toggleMenu:()=>{ const hd=document.querySelector("[data-hd]"); if(!hd) return; const open=hd.getAttribute("data-open")!=="true"; hd.setAttribute("data-open", open?"true":"false"); },
+    };
+  }
+
+  componentDidMount(){
+    // sticky header transparent -> solid
+    const hd = document.querySelector("[data-hd]");
+    const setSolid = (solid)=>{
+      if(!hd) return;
+      hd.style.background = solid ? "#F5F3EF" : "transparent";
+      hd.style.borderBottomColor = solid ? "rgba(24,24,24,.12)" : "transparent";
+      hd.style.padding = solid ? "14px clamp(20px,5vw,64px)" : "22px clamp(20px,5vw,64px)";
+      hd.style.boxShadow = solid ? "0 1px 0 rgba(0,0,0,.02)" : "none";
+      const logo = hd.querySelector("[data-hd-logo]");
+      if(logo) logo.style.filter = "none";
+      hd.querySelectorAll("[data-hd-link]").forEach(l=>{ l.style.color = "#1c1a19"; });
+      hd.querySelectorAll("[data-burger-line]").forEach(b=>{ b.style.background = "#1c1a19"; });
+    };
+    this._onScroll = ()=> setSolid(window.scrollY > 40);
+    window.addEventListener("scroll", this._onScroll, {passive:true});
+    this._onScroll();
+    if(hd){ hd.setAttribute("data-open","false"); hd.querySelectorAll("[data-hd-nav] a").forEach(a=> a.addEventListener("click", ()=> hd.setAttribute("data-open","false"))); }
+
+    // reveal on scroll
+    const els = Array.from(document.querySelectorAll("[data-reveal]"));
+    const revealOn = this.props.revealOnScroll ?? true;
+    if(!revealOn || !("IntersectionObserver" in window)){
+      els.forEach(el=>{ el.style.opacity="1"; el.style.transform="none"; });
+      return;
+    }
+    els.forEach((el,i)=>{
+      el.style.opacity="0";
+      el.style.transform="translateY(22px)";
+      el.style.transition="opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1)";
+    });
+    this._io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){ en.target.style.opacity="1"; en.target.style.transform="none"; this._io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
+    els.forEach(el=> this._io.observe(el));
+  }
+
+  componentWillUnmount(){
+    if(this._onScroll) window.removeEventListener("scroll", this._onScroll);
+    if(this._io) this._io.disconnect();
+  }
+}
+</script>
+</body>
+</html>
